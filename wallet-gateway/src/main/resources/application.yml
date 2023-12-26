@@ -1,0 +1,49 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/v1/users/**
+          filters:
+            - AuthenticationFilter
+
+        - id: wallet-service
+          uri: lb://WALLET-SERVICE
+          predicates:
+            - Path=/v1/wallet/**
+          ##  - Path=/v1/expense/**
+          filters:
+            - AuthenticationFilter
+
+        - id: wallet-service
+          uri: lb://WALLET-SERVICE
+          predicates:
+           ## - Path=/v1/wallet/**
+            - Path=/v1/expense/**
+          filters:
+            - AuthenticationFilter
+
+        - id: auth-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/auth/**
+  application:
+    name: WALLET-GATEWAY
+
+jwt:
+  key: GWjtA5DqSZ4dwrLcy7gvTruNxbgca3OiWsAxIhiQn2c3yDMV6TO5zQvEtMqyt5nfxqdSPQURXSD63bYCqXpbqYe8EPkiFDsL4EjntqKAZouJIG/qQNvQg+R+O6JJqyseUh6OF9UmNmxeALmAP39yzoUieiuANGCYboiRc3DcgUc=
+
+eureka:
+  client:
+    service-url:
+      defaultZone : http://localhost:8761/eureka/
+
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+
+

@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: WALLET-SERVICE
+  datasource:
+    url: jdbc:postgresql://localhost:5435/wallet_db
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+
+  kafka:
+    host: localhost:9092
+    topics:
+      user-created:
+        topicName: create_wallet
+      consumerGroup: wallet
+
+server:
+  port: 8083
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0

@@ -1,0 +1,156 @@
+{
+	"info": {
+		"_postman_id": "977e3ed1-603c-4d50-801c-95127797e4c7",
+		"name": "Digital wallet",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28884939"
+	},
+	"item": [
+		{
+			"name": "Add new User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fullName\":\"Emilia Clarke\",\r\n    \"email\":\"emilia@email.com\",\r\n    \"password\":\"pass\",\r\n    \"city\":\"Westeros\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/auth/register"
+			},
+			"response": []
+		},
+		{
+			"name": "add amount",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"walletId\":3967945,\r\n    \"newAmount\":25000.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/v1/wallet/add"
+			},
+			"response": []
+		},
+		{
+			"name": "add expense",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": ""
+					}
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"walletId\":3967945,\r\n    \"expenseAmount\":550.0,\r\n    \"category\":\"electronic\",\r\n    \"description\":\"description\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/v1/expense/add"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Analyze",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": {
+						"token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbWlsaWFAZW1haWwuY29tIiwiaWF0IjoxNzAzNTM1MDQwLCJleHAiOjE3MDM1MzY4NDB9.ZlbOlFKFRbUAzkwwmLOfNEtyEO0Wk84il09y-erQ7a8"
+					}
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8083/v1/wallet/analyze?category=electronic",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"v1",
+						"wallet",
+						"analyze"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "electronic"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get token",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\":\"\",\r\n    \"password\":\"\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8082/auth/token"
+			},
+			"response": []
+		},
+		{
+			"name": "validate token",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/auth/validate?token=eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaHVzZXlpbkBlbWFpbC5jb20iLCJpYXQiOjE3MDM1MzM4OTgsImV4cCI6MTcwMzUzNTY5OH0.gLd_lIi1_KuOypLP0SAByhFe9Q99ari_EV7hGNfQFFA",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"auth",
+						"validate"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJoaHVzZXlpbkBlbWFpbC5jb20iLCJpYXQiOjE3MDM1MzM4OTgsImV4cCI6MTcwMzUzNTY5OH0.gLd_lIi1_KuOypLP0SAByhFe9Q99ari_EV7hGNfQFFA"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
